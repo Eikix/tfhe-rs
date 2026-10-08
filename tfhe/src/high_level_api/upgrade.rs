@@ -42,6 +42,24 @@ impl DecompressionUpgradeKey {
         })
     }
 
+    pub fn into_raw_parts(self) -> (DecompressionKey, Tag, Tag, Device) {
+        (self.inner, self.tag_in, self.tag_out, self.out_device)
+    }
+
+    pub fn from_raw_parts(
+        decompression_key: DecompressionKey,
+        tag_in: Tag,
+        tag_out: Tag,
+        out_device: Device,
+    ) -> Self {
+        Self {
+            inner: decompression_key,
+            tag_in,
+            tag_out,
+            out_device,
+        }
+    }
+
     pub fn tag_in(&self) -> &Tag {
         &self.tag_in
     }
